@@ -3,7 +3,7 @@ To-Do
 [x] - Gauss elimination
 [ ] - Gauss jordan
 [ ] - Gauss jacobi
-[ ] - Gauss Seidel
+[x] - Gauss Seidel
 """
 # print_rules will print a general rule to not to use cases where number of equations != no of unknowns
 def print_rules():
@@ -34,7 +34,6 @@ def get_coefficients_as_list(no_of_unknowns):
 # factors = [28.7777777777778, 2.1666666666666683, -16.00000000000001, 6.055555555555558]
 def gauss_elimination(no_of_unknowns):
   coefficient_list = get_coefficients_as_list(no_of_unknowns)
-  print(no_of_unknowns,coefficient_list)
   for i in range(0,no_of_unknowns-1):
     for j in range(i+1,no_of_unknowns):
       for k in range(no_of_unknowns,-1,-1):
@@ -67,7 +66,20 @@ def gauss_jacobi(no_of_unknowns):
 # function that computes in gauss seidall method
 def gauss_seidall(no_of_unknowns):
   coefficient_list = get_coefficients_as_list(no_of_unknowns)
-  print(no_of_unknowns,coefficient_list)
+  factors = [1]+[0]*(no_of_unknowns-2)+[1]
+  sample_factors = [1]+[0]*(no_of_unknowns-2)+[1]
+  for i in range(0,6):
+    for j in range(0,no_of_unknowns):
+      diff = 0
+      for k in range(0,j):
+        diff = diff + coefficient_list[j][k]*sample_factors[k]
+      for k in range(j+1,no_of_unknowns):
+        diff = diff + coefficient_list[j][k]*sample_factors[k]
+      diff = (coefficient_list[j][no_of_unknowns]-diff)/coefficient_list[j][j]
+      sample_factors = sample_factors[0:j]+[diff]+sample_factors[j+1:]
+      print("Error % is ",abs(100*(factors[j]-sample_factors[j])/sample_factors[j]))
+    factors = sample_factors
+    print("At iteration ",i+1," factors are ",sample_factors)
 
 # here our program gets executed
 if __name__ == "__main__":
