@@ -12,6 +12,7 @@ def gauss_seidall(no_of_unknowns):
         diff = diff + coefficient_list[j][k]*sample_factors[k]
       for k in range(j+1,no_of_unknowns):
         diff = diff + coefficient_list[j][k]*sample_factors[k]
+      #print(coefficient_list[j][no_of_unknowns],"-",diff,"/",coefficient_list[j][j])
       diff = (coefficient_list[j][no_of_unknowns]-diff)/coefficient_list[j][j]
       sample_factors = sample_factors[0:j]+[diff]+sample_factors[j+1:]
       print("Error % is ",abs(100*(factors[j]-sample_factors[j])/sample_factors[j]))
