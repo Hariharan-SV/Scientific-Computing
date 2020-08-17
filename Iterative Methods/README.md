@@ -20,4 +20,5 @@ That's the challenge. To create solution in python for these methods without usi
 - Provide only diagonally dominant matrix for required ones
 
 Note: In future the code will be made in such a way to check whether the matrix is diagonally dominant or not
-Also feel free to contribute !
+
+*Also feel free to contribute !*
