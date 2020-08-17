@@ -1,10 +1,16 @@
 import get_coefficients_as_list
+import check_diagonal_dominant
 
 # function that computes in gauss elimination method
 # coefficient_list=[[3,-2,5,0,2],[4,5,8,1,4],[1,1,2,1,5],[2,7,6,5,7]]
 # factors = [28.7777777777778, 2.1666666666666683, -16.00000000000001, 6.055555555555558]
 def gauss_elimination(no_of_unknowns):
   coefficient_list = get_coefficients_as_list.get_coefficients_as_list(no_of_unknowns)
+  if check_diagonal_dominant.is_diagonally_dominant(coefficient_list):
+    print("Computing...")
+  else:
+    print("Matrix failed to be diagonally dominant\nExiting...")
+    return
   for i in range(0,no_of_unknowns-1):
     for j in range(i+1,no_of_unknowns):
       for k in range(no_of_unknowns,-1,-1):

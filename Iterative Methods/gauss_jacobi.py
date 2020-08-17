@@ -1,8 +1,14 @@
 import get_coefficients_as_list
+import check_diagonal_dominant
 
 # function that computes in gauss jacobi method
 def gauss_jacobi(no_of_unknowns):
   coefficient_list = get_coefficients_as_list.get_coefficients_as_list(no_of_unknowns)
+  if check_diagonal_dominant.is_diagonally_dominant(coefficient_list):
+    print("Computing...")
+  else:
+    print("Matrix failed to be diagonally dominant\nExiting...")
+    return
   factors = [0]*(no_of_unknowns)
   sample_factors = [0]*(no_of_unknowns)
   for i in range(0,6):
